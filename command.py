@@ -1,4 +1,5 @@
 import dictionary
+import github_jobs
 
 
 class Command(object):
@@ -6,7 +7,8 @@ class Command(object):
         self.commands = {
             "jump": self.jump,
             "help": self.help,
-            "dict": self.dict
+            "dict": self.dict,
+            "jobs": self.jobs,
         }
 
     def handle_command(self, user, message):
@@ -38,4 +40,13 @@ class Command(object):
     def dict(self, word_id):
         if word_id != None:
             response = dictionary.getMeaning(word_id)
-            return response
+        else:
+            response = 'Please provide a word'
+        return response
+
+    def jobs(self, location):
+        if location == None:
+            response = 'Please enter valid location'
+        else:
+            response = github_jobs.get_job(location)
+        return response
