@@ -1,5 +1,6 @@
 import dictionary
 import github_jobs
+import bitcoin
 
 
 class Command(object):
@@ -9,6 +10,7 @@ class Command(object):
             "help": self.help,
             "dict": self.dict,
             "jobs": self.jobs,
+            "bitcoin": self.btc,
         }
 
     def handle_command(self, user, message):
@@ -49,4 +51,8 @@ class Command(object):
             response = 'Please enter valid location'
         else:
             response = github_jobs.get_job(location)
+        return response
+
+    def btc(self, support=None):
+        response = bitcoin.getBitcoinPrice()
         return response
